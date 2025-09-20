@@ -8,6 +8,11 @@ type Health = { ok: boolean; model: string };
 type Whoami = { user_id: string };
 type PredictOut = { outputs: number[] };
 const FEATURE_COLUMNS_DEFAULT = ['f1','f2','f3'];
+type MetricRow = {
+  created_at: string;
+  latency_ms?: number | null;
+  cost_usd?: number | null;
+};
 
 export default function Page() {
   const [email, setEmail] = useState(''); const [pwd, setPwd] = useState('');
@@ -116,7 +121,7 @@ export default function Page() {
 }
 
 function Metrics() {
-  const [rows, setRows] = useState<any[]>([]);
+  const [metrics, setMetrics] = useState<MetricRow[]>([]);
   useEffect(() => {
     const load = async () => {
       const { supabase } = await import('@/lib/supabaseClient');
@@ -124,14 +129,14 @@ function Metrics() {
       let q = supabase.from('usage_logs').select('created_at, latency_ms, cost_usd').order('created_at', {ascending:false}).limit(500);
       if (pid) q = q.eq('project_id', pid);
       const { data, error } = await q;
-      if (!error && data) setRows(data);
+      if (!error && data) setMetrics(data);
     };
     void load();
   }, []);
   return (
     <section className="p-4 rounded border space-y-2">
       <h2 className="font-semibold">Metrics</h2>
-      {rows.length ? <pre className="text-sm bg-gray-50 p-2 rounded">{JSON.stringify(rows.slice(0,5), null, 2)}{rows.length>5?'...':''}</pre> : 'No usage yet.'}
+      {metrics.length ? <pre className="text-sm bg-gray-50 p-2 rounded">{JSON.stringify(metrics.slice(0,5), null, 2)}{metrics.length>5?'...':''}</pre> : 'No usage yet.'}
     </section>
   );
 }
