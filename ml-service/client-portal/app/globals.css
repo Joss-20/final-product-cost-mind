@@ -1,11 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* simple utility styles used in the UI */
-html, body, #__next { height: 100%; }
-
-.card { background: white; @apply rounded-2xl shadow-sm border border-slate-200; }
-.btn { @apply inline-flex items-center justify-center rounded-xl border border-slate-300 px-3 py-2 text-sm font-medium hover:bg-slate-50 transition; }
-.input { @apply border border-slate-300 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400; }
-.label { @apply text-sm text-slate-600; }
+/* optional extras, keep simple until it compiles */
+html, body, :root { height: 100%; }
