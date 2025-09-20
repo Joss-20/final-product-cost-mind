@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { supabase } from '../lib/supabaseClient';
+import { supabase } from '@/lib/supabaseClient';
 import { apiJson, apiCsv } from '@/lib/api';
 
 type Health = { ok: boolean; model: string };
@@ -119,7 +119,7 @@ function Metrics() {
   const [rows, setRows] = useState<any[]>([]);
   useEffect(() => {
     const load = async () => {
-      const { supabase } = await import('../lib/supabaseClient');
+      const { supabase } = await import('@/lib/supabaseClient');
       const pid = process.env.NEXT_PUBLIC_PROJECT_ID;
       let q = supabase.from('usage_logs').select('created_at, latency_ms, cost_usd').order('created_at', {ascending:false}).limit(500);
       if (pid) q = q.eq('project_id', pid);
