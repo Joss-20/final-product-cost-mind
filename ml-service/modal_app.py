@@ -133,7 +133,8 @@ def fastapi_app():
     api.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:8501",           # Streamlit local
+        "http://localhost:3000",           # Streamlit local
+        "https://vercel.com/jose-juan-lazcanos-projects/final-product-cost-mind/EecaSXZNFuab9pzpHkaVj5sNqhPQ", # vercel
         "https://www.costmind.ai" # prod
     ],
     allow_methods=["GET","POST","OPTIONS"],
