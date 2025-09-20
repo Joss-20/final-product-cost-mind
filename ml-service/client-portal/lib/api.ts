@@ -1,5 +1,4 @@
-// lib/api.ts
-const API = process.env.NEXT_PUBLIC_MODAL_API!;
+﻿const API = process.env.NEXT_PUBLIC_MODAL_API!;
 
 export async function apiJson<T>(
   path: string,

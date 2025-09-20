@@ -1,9 +1,6 @@
-{
+﻿{
   "extends": ["next/core-web-vitals", "next/typescript"],
   "overrides": [
-    {
-      "files": ["app/page.tsx", "lib/api.ts"],
-      "rules": { "@typescript-eslint/no-explicit-any": "off" }
-    }
+    { "files": ["app/page.tsx", "lib/api.ts"], "rules": { "@typescript-eslint/no-explicit-any": "off" } }
   ]
 }
